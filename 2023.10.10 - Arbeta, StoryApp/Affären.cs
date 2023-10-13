@@ -14,7 +14,6 @@ namespace _2023._10._10___Arbeta__StoryApp
         public int ExhaustionPoints { get; set; }
         public string Mood { get; set; }
 
-        public static int daysPassed = 0;
         public static int nextID = 1;
 
         public Affären(string name, int moneyEarnd, int exhaustionpoints, string mood)
@@ -31,8 +30,8 @@ namespace _2023._10._10___Arbeta__StoryApp
         {
             Console.Clear();
             Console.WriteLine($"Pojken arbetar i {this.Name} och lyckas tjäna ihop {this.MoneyEarnd} kronor efter dagens slut.\n" +
-                              $"Efter den här arbetsdagen känner sig pojken {this.Mood}.");
-            daysPassed++;
+                              $"Efter den här arbetsdagen känner sig pojken {this.Mood}.\n\n");
+ 
         }
     }
 }

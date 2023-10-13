@@ -12,29 +12,17 @@ namespace _2023._10._10___Arbeta__StoryApp
     {
 
 
-        public int daysPassed = 0;
-        public int counter = 0;
-
-        //Konstruktor till Storymanager som importerar klasser, visar introt och menyn.
-        public StoryManager()
-        {
-            Run();
-            FirstDay();
-            Menu();
-        }
-
+        public int daysPassed = 0; //För att räkna dagarna - spelet är slut efter fem dagar. 
+        public int counter = 0; //För att räkna dagar i rad som pojken putsat skor. 
 
 
         //Skapar objekt från klasserna, samt en lista till affärerna.
         List<Affären> jobbLista = new List<Affären>();
 
         Affären affären = new Affären("affären", 130, 1, "lite trött");
-        Skoputs skoputs = new Skoputs("skoputsningen", 15, 0, "glad", 0);
+        Skoputs skoputs = new Skoputs("skoputsningen", 15, 0, "glad");
         Gruvan gruvan = new Gruvan("gruvan", 300, 3, "utmattad");
-
         Pojken pojken = new Pojken();
-
-
 
 
 
@@ -45,7 +33,16 @@ namespace _2023._10._10___Arbeta__StoryApp
             jobbLista.Add(skoputs);
             jobbLista.Add(gruvan);
         }
-        
+
+
+
+        //Konstruktor till Storymanager som importerar klasser, visar introt och menyn.
+        public StoryManager()
+        {
+            Run();
+            FirstDay();
+            Menu();
+        }
 
 
 
@@ -83,6 +80,10 @@ namespace _2023._10._10___Arbeta__StoryApp
                         case 4:
                             Restday();
                             counter = 0;
+                            break;
+                        default:
+                            Console.Clear();
+                            Console.WriteLine("Vänligen skriv en siffra mellan 1-4\n");
                             break;
                     }
 
@@ -158,7 +159,8 @@ namespace _2023._10._10___Arbeta__StoryApp
             if (counter == 4)
             {
                 pojken.Money += 5000;
-                Console.WriteLine("\n*** Pojken har putsat skor fem dagar i rad och får 5 000 kronor i dricks av en tät gammal dam! ***");
+                Console.WriteLine("\n*** Pojken har putsat skor fem dagar i rad och får 5 000 *** \n" +
+                                    "    kronor i dricks av en tät gammal dam!");
             }
             Console.ReadLine();
             Console.Clear();
@@ -171,6 +173,7 @@ namespace _2023._10._10___Arbeta__StoryApp
         //Vilodag. Pojken får färre utmattningspoäng, men en dag passerar utan betalt.
         private void Restday()
         {
+            Console.Clear();
             Console.WriteLine("Pojken har fått vila och har återfått en del energi.");
             pojken.Exhaustion -= 2;
             daysPassed++;
@@ -190,15 +193,15 @@ namespace _2023._10._10___Arbeta__StoryApp
                                   $"Han har fått ihop {pojken.Money} kronor efter arbetsveckan.\n\n");
                 if (pojken.Money >= 400)
                 {
-                    Console.WriteLine("Du har vunnit spelet! Pojken köper sitt tåg och alla blir lyckliga." +
-                                      "Snipp, snapp, snut. ");
+                    Console.WriteLine("Du har vunnit spelet! Pojken köper sitt tåg och alla blir lyckliga.\n" +
+                                      "Snipp, snapp, snut osv. ");
                     Console.ReadLine();
                     PlayAgain();
                 }
                 else
                 {
-                    Console.WriteLine("Du har förlorat. Pojken har för lite pengar.\n" +
-                                      "Snipp, snapp, snut pojken ");
+                    Console.WriteLine("Du har förlorat. Pojken har för lite pengar.\n");
+                                    
                     PlayAgain();
                 }
             }
